@@ -1,0 +1,42 @@
+syntax = "proto3";
+package proto;
+option java_multiple_files = true;
+option java_package = "generated";
+option java_outer_classname = "UserProtos";
+
+service Lista {
+  rpc create(CreateRequest) returns (Response);
+
+  rpc delete(DeleteRequest) returns (Response);
+
+  rpc update(UpdateRequest) returns (Response);
+
+  rpc read(ReadOneRequest) returns (Response);
+
+  rpc readAll(Empty) returns (Response);
+}
+
+message Empty {}
+
+message CreateRequest {
+  string nomePessoa = 1;
+  string numero = 2;
+}
+
+message DeleteRequest {
+  string numero = 1;
+}
+
+message UpdateRequest {
+  string numeroAntigo = 1;
+  string novoNumero = 2;
+}
+
+message ReadOneRequest {
+  string nomePessoa = 1;
+}
+
+message Response {
+  int64 statusCode = 1;
+  string message = 2;
+}
